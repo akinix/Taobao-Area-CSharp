@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taobao.Area", "Taobao.Area\Taobao.Area.csproj", "{2EDD479D-A7BE-4E75-B271-EBE2803C697D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taobao.Area.Api", "src\Taobao.Area.Api\Taobao.Area.Api.csproj", "{6A21ADC8-58C7-41B1-80F2-B095E2F46F40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EDD479D-A7BE-4E75-B271-EBE2803C697D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDD479D-A7BE-4E75-B271-EBE2803C697D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDD479D-A7BE-4E75-B271-EBE2803C697D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDD479D-A7BE-4E75-B271-EBE2803C697D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A21ADC8-58C7-41B1-80F2-B095E2F46F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A21ADC8-58C7-41B1-80F2-B095E2F46F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A21ADC8-58C7-41B1-80F2-B095E2F46F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A21ADC8-58C7-41B1-80F2-B095E2F46F40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEB4DF09-2289-4ADA-9A8E-C684C0F7B72E}
+	EndGlobalSection
+EndGlobal
