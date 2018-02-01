@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using MediatR;
 using Taobao.Area.Api.Domain.Commands;
+using Taobao.Area.Api.Domain.Services;
 
 namespace Taobao.Area.Api.Controllers
 {
@@ -11,81 +12,58 @@ namespace Taobao.Area.Api.Controllers
     public class TaobaoAreasController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly AreaContextService _areaContextService;
 
-        public TaobaoAreasController(IMediator mediator)
+        public TaobaoAreasController(
+            IMediator mediator,
+            AreaContextService areaContextService)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _areaContextService = areaContextService ?? throw new ArgumentNullException(nameof(areaContextService));
         }
 
+        /// <summary>
+        /// 生成地址相关数据，包括重新下载淘宝js和所有街道json
+        /// </summary>
+        /// <returns></returns>
         [Route("build")]
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Build()
         {
-            var command = new DownloadCommand();
-            var result = await _mediator.Send(command);
-            if (string.IsNullOrEmpty(result))
-                return BadRequest();
-            else
-                return Ok(result);
+            var result = await _mediator.Send(new DownloadJsCommand());
+            if (result)
+                return Ok();
+            return BadRequest();
         }
 
-        //[Route("ship")]
-        //[HttpPut]
-        //[ProducesResponseType((int)HttpStatusCode.OK)]
-        //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        //public async Task<IActionResult> ShipOrder([FromBody]ShipOrderCommand command, [FromHeader(Name = "x-requestid")] string requestId)
-        //{
-        //    bool commandResult = false;
-        //    if (Guid.TryParse(requestId, out Guid guid) && guid != Guid.Empty)
-        //    {
-        //        var requestShipOrder = new IdentifiedCommand<ShipOrderCommand, bool>(command, guid);
-        //        commandResult = await _mediator.Send(requestShipOrder);
-        //    }
+        /// <summary>
+        /// 重新生成地址相关数据，包括重新下载淘宝js和所有街道json
+        /// </summary>
+        /// <returns></returns>
+        [Route("ReBuild")]
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> ReBuild()
+        {
+            _areaContextService.SetIsForce(true);
+            var result = await _mediator.Send(new DownloadJsCommand());
+            if (result)
+                return Ok();
+            return BadRequest();
+        }
 
-        //    return commandResult ? (IActionResult)Ok() : (IActionResult)BadRequest();
-
-        //}
-
-        //[Route("{orderId:int}")]
-        //[HttpGet]
-        //[ProducesResponseType(typeof(Order), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType((int)HttpStatusCode.NotFound)]
-        //public async Task<IActionResult> GetOrder(int orderId)
-        //{
-        //    try
-        //    {
-        //        var order = await _orderQueries
-        //            .GetOrderAsync(orderId);
-
-        //        return Ok(order);
-        //    }
-        //    catch (KeyNotFoundException)
-        //    {
-        //        return NotFound();
-        //    }
-        //}
-
-        //[Route("")]
-        //[HttpGet]
-        //[ProducesResponseType(typeof(IEnumerable<OrderSummary>), (int)HttpStatusCode.OK)]
-        //public async Task<IActionResult> GetOrders()
-        //{
-        //    var orders = await _orderQueries.GetOrdersAsync();
-
-        //    return Ok(orders);
-        //}
-
-        //[Route("cardtypes")]
-        //[HttpGet]
-        //[ProducesResponseType(typeof(IEnumerable<CardType>), (int)HttpStatusCode.OK)]
-        //public async Task<IActionResult> GetCardTypes()
-        //{
-        //    var cardTypes = await _orderQueries
-        //        .GetCardTypesAsync();
-
-        //    return Ok(cardTypes);
-        //}
+//        [Route("TestDownloadStreetData")]
+//        [HttpPut]
+//        [ProducesResponseType((int)HttpStatusCode.OK)]
+//        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+//        public async Task<IActionResult> TestDownloadStreetData()
+//        {
+//            var command = new DistrictAddedEvent("440000", "440300", "440304");
+//            await _mediator.Publish(command);
+//            return Ok();
+//        }
     }
 }

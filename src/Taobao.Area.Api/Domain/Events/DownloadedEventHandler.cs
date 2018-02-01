@@ -10,27 +10,27 @@ using Taobao.Area.Api.Events;
 
 namespace Taobao.Area.Api.Domain.Events
 {
-    public class DownloadedEventHandler : INotificationHandler<DownloadedEvent>
-    {
-        private readonly IMediator _mediator;
-        private readonly ILogger<DownloadedEventHandler> _logger;
-
-        public DownloadedEventHandler(IMediator mediator, ILogger<DownloadedEventHandler> logger)
-        {
-            _mediator = mediator;
-            _logger = logger;
-        }
-
-        public async Task Handle(DownloadedEvent downloadedEvent, CancellationToken cancellationToken)
-        {
-            _logger.LogTrace($"接收到Js下载完成事件，Js临时目录 : {downloadedEvent.TempJsName}。");
-
-            //交给 分析命令去处理 
-            var cmd = new AnalysisCommand(downloadedEvent.TempJsName);
-            await _mediator.Send(cmd);
-
-            // 如果有其他消费者 在此添加
-            // ...
-        }
-    }
+//    public class DownloadedEventHandler : INotificationHandler<DownloadedEvent>
+//    {
+//        private readonly IMediator _mediator;
+//        private readonly ILogger<DownloadedEventHandler> _logger;
+//
+//        public DownloadedEventHandler(IMediator mediator, ILogger<DownloadedEventHandler> logger)
+//        {
+//            _mediator = mediator;
+//            _logger = logger;
+//        }
+//
+//        public async Task Handle(DownloadedEvent downloadedEvent, CancellationToken cancellationToken)
+//        {
+//            _logger.LogTrace($"接收到Js下载完成事件，Js临时目录 : {downloadedEvent.TempJsName}。");
+//
+//            //交给 分析命令去处理 
+//            //var cmd = new AnalysisCommand(downloadedEvent.TempJsName);
+//            //await _mediator.Send(cmd);
+//
+//            // 如果有其他消费者 在此添加
+//            // ...
+//        }
+//    }
 }

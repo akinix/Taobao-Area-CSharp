@@ -27,5 +27,12 @@ namespace Taobao.Area.Api.Extensions
             return str.Substring(startIndex);
         }
 
+        public static int ToInt(this string str)
+        {
+            var res = 0;
+            int.TryParse(str, out res);
+            return res;
+        }
+
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +34,8 @@ namespace Taobao.Area.Api
             {
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter));
             }).AddControllersAsServices();
+            // hangfire
+            services.AddHangfire(x => x.UseMemoryStorage());
             // TaobaoAreaSettings
             services.Configure<TaobaoAreaSettings>(Configuration);
             // Swagger
@@ -61,7 +65,7 @@ namespace Taobao.Area.Api
             container.Populate(services);
 
             container.RegisterModule(new MediatorModule());
-            //container.RegisterModule(new ApplicationModule(Configuration["ConnectionString"]));
+            container.RegisterModule(new ApplicationModule());
 
             return new AutofacServiceProvider(container.Build());
         }
@@ -74,6 +78,11 @@ namespace Taobao.Area.Api
             app.UseCors("CorsPolicy");
 
             app.UseMvcWithDefaultRoute();
+
+            app.UseStaticFiles();
+
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
 
             app.UseSwagger()
               .UseSwaggerUI(c =>

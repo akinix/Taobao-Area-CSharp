@@ -15,13 +15,20 @@ namespace Taobao.Area.Api.AutofacModules
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly)
                 .AsImplementedInterfaces();
 
-            // 注入 IRequestHandler
-            builder.RegisterAssemblyTypes(typeof(MediatorModule).GetTypeInfo().Assembly)
-                .AsClosedTypesOf(typeof(IRequestHandler<,>));
+            var mediatrOpenTypes = new[]
+            {
+                typeof(IRequestHandler<,>),
+                typeof(IRequestHandler<>),
+                typeof(INotificationHandler<>),
+            };
 
-            // 注入 INotificationHandler
-            builder.RegisterAssemblyTypes(typeof(MediatorModule).GetTypeInfo().Assembly)
-                .AsClosedTypesOf(typeof(INotificationHandler<>));
+            foreach (var mediatrOpenType in mediatrOpenTypes)
+            {
+                builder
+                    .RegisterAssemblyTypes(typeof(MediatorModule).GetTypeInfo().Assembly)
+                    .AsClosedTypesOf(mediatrOpenType)
+                    .AsImplementedInterfaces();
+            }
 
             // 参照官网
             builder.Register<SingleInstanceFactory>(context =>
