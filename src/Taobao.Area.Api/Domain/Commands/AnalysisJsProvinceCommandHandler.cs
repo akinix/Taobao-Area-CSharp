@@ -69,7 +69,7 @@ namespace Taobao.Area.Api.Domain.Commands
                         return;
                     var ppId = pp[2].Value<string>();
 
-                    //_mediator.Publish(new DistrictAddedEvent(ppId, pId, districtCode));
+                    _mediator.Publish(new DistrictAddedEvent(ppId, pId, districtCode));
                     return;
                 }
                 catch (Exception ex)
