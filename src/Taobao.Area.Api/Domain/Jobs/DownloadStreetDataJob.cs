@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -55,7 +56,11 @@ namespace Taobao.Area.Api.Domain.Jobs
 
         private string Analysis(string str)
         {
-            return str.Ltrim("success:true,result:").Rtrim("});");
+            //json不支持引号,去除拼音等
+            var temp = str.Ltrim("success:true,result:").Rtrim("});");
+            temp = Regex.Replace(temp, "[a-zA-Z]+", "").Replace(" ", "").Replace(",''", "")
+                .Replace("'", "\"");
+            return temp;
         }
 
         private async Task CreatJson(string districtCode, string json)
