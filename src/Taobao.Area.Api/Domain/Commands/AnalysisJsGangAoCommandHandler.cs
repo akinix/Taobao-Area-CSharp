@@ -33,7 +33,7 @@ namespace Taobao.Area.Api.Domain.Commands
             var gangCode = "810000";
             var gang = array.First(i => i[0].Value<string>() == gangCode);
             var pgang = new List<object> { gangCode.ToInt(), gang[1][0].Value<string>(), AreaContextService.FirstItemKey.ToInt() };
-            (_areaContextService.GetFirstDicItem()[AreaContextService.KeyTz] as List<object>)?.Add(pao);
+            (_areaContextService.GetFirstDicItem()[AreaContextService.KeyTz] as List<object>)?.Add(pgang);
             RecursiveAdd(array, gangCode);
             return true;
         }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Taobao.Area.Api.Events
+namespace Taobao.Area.Api.Domain.Events
 {
     public class DownloadJsCompletedEvent : INotification
     {
