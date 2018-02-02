@@ -1,16 +1,18 @@
 # Taobao-Area-CSharp
 淘宝国家省市区街道获取
 
-参考 [foxiswho](https://github.com/foxiswho) 的[taobao-area-php](https://github.com/foxiswho/taobao-area-php)部分代码，改由c#重构。
-
-使用中介模式
+> 参考 [foxiswho](https://github.com/foxiswho) 的 [taobao-area-php](https://github.com/foxiswho/taobao-area-php) 部分代码，改由c#重构。
 
 引用如下：
 
-* Autofac 
-* MediatR 
-* Swagger 
-* HangFire 生成街道数据爬取任务。
+> - Autofac 
+> - MediatR 
+> - Swagger 
+> - HangFire 生成街道数据爬取任务。
+
+## 演示
+
+暂无
 
 ## 目的
 
