@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Taobao.Area.Api.Extensions
+﻿namespace Taobao.Area.Api.Extensions
 {
     public static class StringExtensions
     {

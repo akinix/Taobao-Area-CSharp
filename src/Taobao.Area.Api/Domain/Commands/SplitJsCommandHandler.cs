@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Taobao.Area.Api.Configurations;
 using Taobao.Area.Api.Domain.Events;
 using Taobao.Area.Api.Domain.Services;
 using Taobao.Area.Api.Extensions;

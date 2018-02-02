@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Hangfire;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Taobao.Area.Api.Domain.Jobs;
 using Taobao.Area.Api.Domain.Services;

@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Taobao.Area.Api.Domain.Events;
 using Taobao.Area.Api.Domain.Services;
-using Taobao.Area.Api.Events;
 using Taobao.Area.Api.Extensions;
 
 namespace Taobao.Area.Api.Domain.Commands

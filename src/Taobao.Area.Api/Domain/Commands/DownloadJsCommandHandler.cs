@@ -7,8 +7,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Taobao.Area.Api.Configurations;
+using Taobao.Area.Api.Domain.Events;
 using Taobao.Area.Api.Domain.Services;
-using Taobao.Area.Api.Events;
 
 namespace Taobao.Area.Api.Domain.Commands
 {
