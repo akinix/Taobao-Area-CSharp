@@ -54,16 +54,5 @@ namespace Taobao.Area.Api.Controllers
                 return Ok();
             return BadRequest();
         }
-
-//        [Route("TestDownloadStreetData")]
-//        [HttpPut]
-//        [ProducesResponseType((int)HttpStatusCode.OK)]
-//        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-//        public async Task<IActionResult> TestDownloadStreetData()
-//        {
-//            var command = new DistrictAddedEvent("440000", "440300", "440304");
-//            await _mediator.Publish(command);
-//            return Ok();
-//        }
     }
 }
