@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>region-picker demo</title>
+    <link href="https://cdn.bootcss.com/antd/3.1.6/antd.min.css" rel="stylesheet">
+    <style type="text/css">
+        #globalLoading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 60px;
+        }
+
+        #globalLoading .spinner {
+            position: relative;
+            top: -50%;
+            left: -50%;
+            width: 50px;
+            height: 100%;
+        }
+
+        #globalLoading .spinner > div {
+            background-color: #1890ff;
+            height: 100%;
+            width: 6px;
+            display: inline-block;
+            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+            animation: stretchdelay 1.2s infinite ease-in-out;
+        }
+
+        #globalLoading .spinner .rect2 {
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+
+        #globalLoading .spinner .rect3 {
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+        }
+
+        #globalLoading .spinner .rect4 {
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+
+        #globalLoading .spinner .rect5 {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+
+        @-webkit-keyframes stretchdelay {
+            0%,
+            40%,
+            100% {
+                -webkit-transform: scaleY(0.4);
+                transform: scaleY(0.4);
+            }
+            20% {
+                -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes stretchdelay {
+            0%,
+            40%,
+            100% {
+                -webkit-transform: scaleY(0.4);
+                transform: scaleY(0.4);
+            }
+            20% {
+                -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="globalLoading">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/react/16.2.0/umd/react.production.min.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdn.bootcss.com/antd/3.1.6/antd.min.js"></script>
+<script src="data/area.picker.data.6.0.14.js"></script>
+<script type="text/javascript" src="js/app-458c53c5d3.js"></script></body>
+</html>
