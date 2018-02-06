@@ -18,6 +18,12 @@
 
 前端源码稍后上传,请关注 [**deepfunc**](https://github.com/deepfunc)
 
+## Release
+
+生成的release中包含省市区县.js和街道.json.
+
+[**下载地址**](https://github.com/akinix/Taobao-Area-CSharp/releases)
+
 ## 目的
 
 为了方便获取中国大陆及港澳台省市区县街道相关数据，根据 [淘宝地址js](https://g.alicdn.com/vip/address/6.0.14/index-min.js),解析并生成相关数据。
