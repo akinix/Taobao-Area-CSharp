@@ -77,7 +77,5 @@ namespace Taobao.Area.Api.Domain.Services
         {
             return MainDictionary[key] as Dictionary<string, object>;
         }
-
-        
     }
 }
