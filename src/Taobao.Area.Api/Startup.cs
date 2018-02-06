@@ -78,6 +78,7 @@ namespace Taobao.Area.Api
             app.UseStaticFiles();
 
             app.UseHangfireServer();
+
             app.UseHangfireDashboard();
 
             app.UseSwagger()
