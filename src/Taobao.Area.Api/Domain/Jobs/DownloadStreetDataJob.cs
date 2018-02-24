@@ -29,7 +29,9 @@ namespace Taobao.Area.Api.Domain.Jobs
 
         public async Task DownloadAsync(string provinceCode, string cityCode, string districtCode, bool isForce)
         {
-            var jsonName = $"{districtCode}.json";
+            // districtCode 有可能为空
+            var jsonName = string.IsNullOrEmpty(districtCode) ? $"{cityCode}.json" : $"{districtCode}.json";
+
             var jsonPath = Path.Combine(_env.WebRootPath, _settings.JsDirectoryName, jsonName);
             if(File.Exists(jsonPath) && !isForce)
                 return;
@@ -46,7 +48,7 @@ namespace Taobao.Area.Api.Domain.Jobs
             var context = await response.Content.ReadAsStringAsync();
 
             var data = Analysis(context);
-            await CreatJson(districtCode, data);
+            await File.WriteAllTextAsync(jsonPath, data);
         }
 
         private string Analysis(string str)
@@ -56,13 +58,6 @@ namespace Taobao.Area.Api.Domain.Jobs
             temp = Regex.Replace(temp, "[a-zA-Z]+", "").Replace(" ", "").Replace(",''", "")
                 .Replace("'", "\"");
             return temp;
-        }
-
-        private async Task CreatJson(string districtCode, string json)
-        {
-            var jsonName = $"{districtCode}.json";
-            var jsonPath = Path.Combine(_env.WebRootPath, _settings.JsDirectoryName, jsonName);
-            await File.WriteAllTextAsync(jsonPath, json);
         }
     }
 }
