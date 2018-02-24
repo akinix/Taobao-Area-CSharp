@@ -28,6 +28,11 @@ namespace Taobao.Area.Api.Domain.Commands
         public async Task Handle(AnalysisJsCommand command, CancellationToken cancellationToken)
         {
             var result = false;
+            result = await _mediator.Send(new AnalysisJsNoneDistrictCityCommand(), cancellationToken);
+            if (!result)
+            {
+                _logger.LogInformation($"命令{nameof(AnalysisJsNoneDistrictCityCommand)}执行失败。");
+            }
             result = await _mediator.Send(new AnalysisJsProvinceCommand(), cancellationToken);
             if (!result)
             {
@@ -43,7 +48,6 @@ namespace Taobao.Area.Api.Domain.Commands
             {
                 _logger.LogInformation($"命令{nameof(AnalysisJsTaiwanCommand)}执行失败。");
             }
-
             await _mediator.Publish(new AnalysisJsCompletedEvent(), cancellationToken);
         }
     }

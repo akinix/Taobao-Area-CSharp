@@ -16,7 +16,7 @@ namespace Taobao.Area.Api.Domain.Events
 
         public async Task Handle(DistrictAddedEvent @event, CancellationToken cancellationToken)
         {
-            //交给 下载街道命令去处理 
+            // 交给 下载街道命令去处理 
             var cmd = new DownloadStreetDataCommand(@event.ProvinceCode, @event.CityCode, @event.DistrictCode);
             await _mediator.Send(cmd, cancellationToken);
 

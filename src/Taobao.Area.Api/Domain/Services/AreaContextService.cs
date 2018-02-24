@@ -25,6 +25,8 @@ namespace Taobao.Area.Api.Domain.Services
 
         public string AreaString { get; private set; }
 
+        public string NoneDistrictCityString { get; private set; }
+
         public bool IsForce { get; private set; }
 
         public void SetProvinceString(string value)
@@ -47,6 +49,11 @@ namespace Taobao.Area.Api.Domain.Services
             AreaString = value;
         }
 
+        public void SetNoneDistrictCityString(string value)
+        {
+            NoneDistrictCityString = value;
+        }
+
         public void SetIsForce(bool value)
         {
             IsForce = value;
@@ -57,7 +64,8 @@ namespace Taobao.Area.Api.Domain.Services
             if (string.IsNullOrEmpty(ProvinceString)
                 || string.IsNullOrEmpty(GangAoString)
                 || string.IsNullOrEmpty(TaiwanString)
-                || string.IsNullOrEmpty(AreaString))
+                || string.IsNullOrEmpty(AreaString)
+                || string.IsNullOrEmpty(NoneDistrictCityString))
                 return false;
 
             return true;
@@ -65,7 +73,7 @@ namespace Taobao.Area.Api.Domain.Services
 
         private void Init()
         {
-            MainDictionary.Add("1", new Dictionary<string, object>());
+            MainDictionary.Add(FirstItemKey, new Dictionary<string, object>());
         }
 
         public Dictionary<string, object> GetFirstDicItem()
