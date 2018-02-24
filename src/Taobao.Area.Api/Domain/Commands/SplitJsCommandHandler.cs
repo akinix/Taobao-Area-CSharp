@@ -47,10 +47,14 @@ namespace Taobao.Area.Api.Domain.Commands
             var strGangAo = other[0];
             var strTaiwan = other[1];
 
+            // 有些城市无区县 但是有街道 
+            var strNoneDistrictCity = matches[1].Ltrim("get(\"district\"),u=").Rtrim(",v=t.inArray");
+
             _areaContextService.SetProvinceString(strProvince);
             _areaContextService.SetAreaString(strArear);
             _areaContextService.SetGangAoString(strGangAo);
             _areaContextService.SetTaiwanString(strTaiwan);
+            _areaContextService.SetNoneDistrictCityString(strNoneDistrictCity);
 
             // 触发拆分js完成事件
             await _mediator.Publish(new SplitJsCompletedEvent(), cancellationToken);
