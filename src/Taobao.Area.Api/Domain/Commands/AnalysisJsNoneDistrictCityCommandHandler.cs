@@ -30,7 +30,12 @@ namespace Taobao.Area.Api.Domain.Commands
         {
             // 处理部分城市无区县但是有街道的数据
             var array = JsonConvert.DeserializeObject<JArray>(_areaContextService.NoneDistrictCityString);
-            _areaContextService.MainDictionary.TryAdd(NoneDistrictCityItemKey, array);
+            var intList = new List<int>();
+            foreach (var item in array)
+            {
+                intList.Add(int.Parse(item.Value<string>()));
+            }
+            _areaContextService.MainDictionary.TryAdd(NoneDistrictCityItemKey, intList);
 
             foreach (var item in array)
             {
